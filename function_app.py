@@ -1,9 +1,11 @@
 import azure.functions as func
 import logging
 
-from azure.identity import DefaultAzureCredential
+import azure.identity as identity
+import azure.keyvault.secrets as secrets
+#from azure.identity import DefaultAzureCredential
 
-from sample_file import say_hello
+#from sample_file import say_hello
 #from azure.keyvault.secrets import SecretClient
 
 #def get_secret(key_vault_name: str, key_name: str) -> tuple:
