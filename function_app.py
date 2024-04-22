@@ -1,8 +1,8 @@
 import azure.functions as func
 import logging
 
-#from azure.identity import DefaultAzureCredential
-#from azure.keyvault.secrets import SecretClient
+from azure.identity import DefaultAzureCredential
+from azure.keyvault.secrets import SecretClient
 
 #def get_secret(key_vault_name: str, key_name: str) -> tuple:
 #    credential = DefaultAzureCredential()
@@ -62,7 +62,7 @@ def httpSlow(req: func.HttpRequest) -> func.HttpResponse:
              status_code=200
         )
     
-@app.route(route="health")
+@app.route(route="health", methods=["GET"])
 def health(req: func.HttpRequest) -> func.HttpResponse:
     return func.HttpResponse(
              "OK",
