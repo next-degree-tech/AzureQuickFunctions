@@ -1,7 +1,7 @@
 import azure.functions as func
 import logging
 
-#from azure.identity import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential
 
 from sample_file import say_hello
 #from azure.keyvault.secrets import SecretClient
