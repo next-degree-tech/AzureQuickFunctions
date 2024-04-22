@@ -1,7 +1,9 @@
 import azure.functions as func
 import logging
 
-from azure.identity import DefaultAzureCredential
+#from azure.identity import DefaultAzureCredential
+
+from sample_file import say_hello
 #from azure.keyvault.secrets import SecretClient
 
 #def get_secret(key_vault_name: str, key_name: str) -> tuple:
@@ -30,7 +32,7 @@ def httpQuick(req: func.HttpRequest) -> func.HttpResponse:
             name = req_body.get('name')
 
     if name:
-        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
+        return func.HttpResponse(say_hello(name))
     else:
         return func.HttpResponse(
              "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
