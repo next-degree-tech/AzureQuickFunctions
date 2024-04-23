@@ -1,5 +1,6 @@
 import azure.functions as func
 import logging
+from azure.identity import DefaultAzureCredential
 
 #import azure.identity as identity
 #import azure.keyvault.secrets as secrets
