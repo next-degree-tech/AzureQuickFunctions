@@ -1,23 +1,16 @@
 import azure.functions as func
 import logging
 from azure.identity import DefaultAzureCredential
+from azure.keyvault.secrets import SecretClient
 
-#import azure.identity as identity
-#import azure.keyvault.secrets as secrets
-#from azure.identity import DefaultAzureCredential
+def get_secret(key_vault_name: str, key_name: str) -> tuple:
+    credential = DefaultAzureCredential()
+    key_client = SecretClient(
+        vault_url=f"https://{key_vault_name}.vault.azure.net/", credential=credential)
+    secret = key_client.get_secret(key_name)
 
-from sample_file import say_hello
-#from azure.keyvault.secrets import SecretClient
-
-#def get_secret(key_vault_name: str, key_name: str) -> tuple:
-#    credential = DefaultAzureCredential()
-#    key_client = SecretClient(
-#        vault_url=f"https://{key_vault_name}.vault.azure.net/", credential=credential
-#    secret = key_client.get_secret(key_name)
-#    )
-#
-#    return secret.properties.content_type, secret.value
-
+    return secret.properties.content_type, secret.value
+ 
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
@@ -48,7 +41,7 @@ def httpSlow(req: func.HttpRequest) -> func.HttpResponse:
     key_vault = "kv-eus-dev-ndg001"
     secret_name = "sampleSecret"
     content_type, secret = "taco", "bell"
-    #content_type, secret = get_secret(key_vault, secret_name)
+    content_type, secret = get_secret(key_vault, secret_name)
 
     name = req.params.get('name')
     if not name:
