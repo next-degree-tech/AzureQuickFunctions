@@ -1,15 +1,15 @@
 import azure.functions as func
 import logging
-from azure.identity import DefaultAzureCredential
-from azure.keyvault.secrets import SecretClient
+#from azure.identity import DefaultAzureCredential
+#from azure.keyvault.secrets import SecretClient
 
-def get_secret(key_vault_name: str, key_name: str) -> tuple:
-    credential = DefaultAzureCredential()
-    key_client = SecretClient(
-        vault_url=f"https://{key_vault_name}.vault.azure.net/", credential=credential)
-    secret = key_client.get_secret(key_name)
-
-    return secret.properties.content_type, secret.value
+#def get_secret(key_vault_name: str, key_name: str) -> tuple:
+#    credential = DefaultAzureCredential()
+#    key_client = SecretClient(
+#        vault_url=f"https://{key_vault_name}.vault.azure.net/", credential=credential)
+#    secret = key_client.get_secret(key_name)
+#
+#    return secret.properties.content_type, secret.value
  
 
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
